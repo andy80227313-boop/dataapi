@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- 문서 언어를 한국어로 지정한다 -->
+<html lang="ko">
+<head>
+  <!-- 한글이 깨지지 않게 글자 인코딩을 지정한다 -->
+  <meta charset="UTF-8">
+  <!-- 휴대폰 화면 너비에 맞춰 보여준다 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 브라우저 탭에 표시할 제목이다 -->
+  <title>공기 신호등</title>
+  <!-- 앱 정보 파일(manifest.json)을 연결한다 -->
+  <link rel="manifest" href="manifest.json">
+  <!-- 휴대폰 상단 막대에 쓸 테마 색이다 -->
+  <meta name="theme-color" content="#1d63d8">
+  <!-- 브라우저 탭에 보여줄 아이콘이다 -->
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <!-- 아이폰 홈 화면에 쓸 아이콘이다 -->
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <!-- Pretendard 글꼴을 불러온다 (실패하면 시스템 한글 글꼴을 쓴다) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+  <!-- 디자인 파일(style.css)을 연결한다 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 화면 전체 내용을 담는 영역이다 -->
+  <main class="page">
+    <!-- 앱 제목과 시도 선택 영역이다 -->
+    <header class="top">
+      <!-- 앱 이름을 보여준다 -->
+      <h1 class="title">공기 신호등</h1>
+      <!-- 드롭다운의 이름표이다 -->
+      <label class="picker-label" for="sido-select">지역 선택</label>
+      <!-- 시도를 고르는 드롭다운이다 -->
+      <select id="sido-select" class="picker">
+        <!-- 전국 항목 -->
+        <option value="전국">전국</option>
+        <!-- 서울 항목 -->
+        <option value="서울">서울</option>
+        <!-- 부산 항목 -->
+        <option value="부산">부산</option>
+        <!-- 대구 항목 -->
+        <option value="대구">대구</option>
+        <!-- 인천 항목 -->
+        <option value="인천">인천</option>
+        <!-- 광주 항목 -->
+        <option value="광주">광주</option>
+        <!-- 대전 항목 -->
+        <option value="대전">대전</option>
+        <!-- 울산 항목 -->
+        <option value="울산">울산</option>
+        <!-- 세종 항목 -->
+        <option value="세종">세종</option>
+        <!-- 경기 항목 -->
+        <option value="경기">경기</option>
+        <!-- 강원 항목 -->
+        <option value="강원">강원</option>
+        <!-- 충북 항목 -->
+        <option value="충북">충북</option>
+        <!-- 충남 항목 -->
+        <option value="충남">충남</option>
+        <!-- 전북 항목 -->
+        <option value="전북">전북</option>
+        <!-- 전남 항목 -->
+        <option value="전남">전남</option>
+        <!-- 경북 항목 -->
+        <option value="경북">경북</option>
+        <!-- 경남 항목 -->
+        <option value="경남">경남</option>
+        <!-- 제주 항목 -->
+        <option value="제주">제주</option>
+      </select>
+    </header>
+
+    <!-- 지역 대표 상태를 크게 보여주는 영역이다 -->
+    <section id="hero" class="summary grade-none" aria-live="polite">
+      <!-- 어느 지역의 상태인지 보여준다 -->
+      <p id="average-label" class="summary-label">공기 상태</p>
+      <!-- 대표 등급의 이모지와 이름을 아주 크게 보여준다 -->
+      <p class="summary-status">
+        <!-- 등급 이모지 자리이다 -->
+        <span id="status-emoji"></span>
+        <!-- 등급 이름 자리이다 -->
+        <span id="status-name">불러오는 중...</span>
+      </p>
+      <!-- 평균 수치를 크게 보여준다 -->
+      <p id="average-value" class="summary-value"></p>
+      <!-- 한 줄 안내 문구를 보여준다 -->
+      <p id="advice" class="summary-advice"></p>
+      <!-- 평균 계산에 쓰인 측정소 수를 보여준다 -->
+      <p id="average-note" class="summary-note"></p>
+    </section>
+
+    <!-- 불러오는 중, 오류 같은 안내 문구를 보여준다 -->
+    <p id="status" class="status" role="status"></p>
+
+    <!-- 측정소별 수치를 막대그래프로 보여주는 영역이다 -->
+    <section id="chart-panel" class="chart-panel" hidden>
+      <!-- 그래프 제목이다 -->
+      <h2 id="chart-title" class="chart-title">미세먼지 높은 측정소</h2>
+      <!-- 일부 측정소만 받아 왔을 때 안내 문구이다 -->
+      <p id="chart-note" class="chart-note"></p>
+      <!-- 막대 색이 뜻하는 등급을 알려준다 -->
+      <ul class="chart-legend">
+        <!-- 좋음 색 설명 -->
+        <li><span class="legend-dot grade-1"></span>좋음</li>
+        <!-- 보통 색 설명 -->
+        <li><span class="legend-dot grade-2"></span>보통</li>
+        <!-- 나쁨 색 설명 -->
+        <li><span class="legend-dot grade-3"></span>나쁨</li>
+        <!-- 매우나쁨 색 설명 -->
+        <li><span class="legend-dot grade-4"></span>매우나쁨</li>
+        <!-- 등급 없음 색 설명 -->
+        <li><span class="legend-dot grade-none"></span>등급 없음</li>
+      </ul>
+      <!-- 그래프 크기를 정하는 틀이다 -->
+      <div id="chart-box" class="chart-box">
+        <!-- Chart.js가 그래프를 그리는 자리이다 -->
+        <canvas id="dust-chart" role="img"></canvas>
+      </div>
+    </section>
+
+    <!-- 측정소 카드가 들어가는 영역이다 -->
+    <section id="card-list" class="card-list" aria-label="측정소 목록"></section>
+  </main>
+
+  <!-- 그래프 도구 Chart.js를 CDN에서 불러온다 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <!-- 동작 파일(script.js)을 연결한다 -->
+  <script src="script.js"></script>
+</body>
+</html>

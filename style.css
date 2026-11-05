@@ -1,0 +1,345 @@
+/* 앱 전체에서 함께 쓰는 색을 모아 둔다 */
+:root {
+  /* 화면 배경색 */
+  --bg: #f3f5f8;
+  /* 기본 글자색 */
+  --text: #1c2430;
+  /* 보조 글자색 */
+  --muted: #566070;
+  /* 흰색 면 색 */
+  --surface: #ffffff;
+  /* 좋음 등급의 파랑 */
+  --blue: #1d63d8;
+  /* 좋음 카드의 연한 파랑 */
+  --blue-soft: #eef4fe;
+  /* 보통 등급의 초록 */
+  --green: #1a7f46;
+  /* 보통 카드의 연한 초록 */
+  --green-soft: #ecf8f1;
+  /* 나쁨 등급의 주황 */
+  --orange: #b9520a;
+  /* 나쁨 카드의 연한 주황 */
+  --orange-soft: #fef3e8;
+  /* 매우나쁨 등급의 빨강 */
+  --red: #cc2727;
+  /* 매우나쁨 카드의 연한 빨강 */
+  --red-soft: #fdeeee;
+  /* 등급 없음의 회색 */
+  --gray: #626b78;
+  /* 등급 없음 카드의 연한 회색 */
+  --gray-soft: #f0f1f4;
+}
+
+/* 여백 계산을 쉽게 하도록 크기 기준을 통일한다 */
+* {
+  box-sizing: border-box;
+}
+
+/* 페이지 기본 글꼴과 배경을 정한다 */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Pretendard", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  line-height: 1.5;
+}
+
+/* 내용 폭을 제한하고 가운데로 모은다 */
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* 제목과 드롭다운을 한 줄에 배치한다 */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 16px;
+}
+
+/* 앱 제목 글자를 정한다 */
+.title {
+  margin: 0 auto 0 0;
+  font-size: 1.6rem;
+}
+
+/* 드롭다운 이름표 글자를 정한다 */
+.picker-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* 드롭다운을 손가락으로 누르기 쉬운 크기로 만든다 */
+.picker {
+  min-width: 130px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #c4cad4;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+/* 대표 상태 영역을 등급 색으로 칠한다 */
+.summary {
+  margin-bottom: 16px;
+  padding: 24px 20px;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  background: var(--fill);
+  text-align: center;
+}
+
+/* 요약 영역 안 문단의 기본 여백을 없앤다 */
+.summary p {
+  margin: 0;
+}
+
+/* 평균 제목 글자를 정한다 */
+.summary-label {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* 이모지와 등급 이름을 아주 크게 키운다 */
+.summary-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 12px;
+  color: var(--line);
+  font-size: clamp(2.4rem, 12vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* 평균 숫자를 크게 키운다 */
+.summary-value {
+  font-size: clamp(2.5rem, 11vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* 평균이 없을 때는 숫자 자리를 숨긴다 */
+.summary-value:empty {
+  display: none;
+}
+
+/* 한 줄 안내 문구를 눈에 띄게 만든다 */
+.summary-advice {
+  margin-top: 8px !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* 안내 문구가 없을 때는 자리를 숨긴다 */
+.summary-advice:empty {
+  display: none;
+}
+
+/* 숫자 옆 단위 글자를 작게 만든다 */
+.summary-unit {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* 측정소 수 안내 글자를 정한다 */
+.summary-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* 안내 문구의 글자를 정한다 */
+.status {
+  margin: 0 0 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* 내용이 없을 때 안내 문구 자리를 숨긴다 */
+.status:empty {
+  display: none;
+}
+
+/* 그래프 영역의 면을 만든다 */
+.chart-panel {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+/* 그래프 제목 글자를 정한다 */
+.chart-title {
+  margin: 0;
+  font-size: 1.15rem;
+  word-break: keep-all;
+}
+
+/* 그래프 안내 문구 글자를 정한다 */
+.chart-note {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* 안내 문구가 없을 때는 자리를 숨긴다 */
+.chart-note:empty {
+  display: none;
+}
+
+/* 등급 색 설명을 한 줄로 늘어놓는다 */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 8px 0;
+  padding: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  list-style: none;
+}
+
+/* 색 설명의 동그라미를 만든다 */
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+/* 그래프 폭이 화면을 넘지 않게 한다 */
+.chart-box {
+  position: relative;
+  width: 100%;
+}
+
+/* 화면 폭에 맞춰 카드 칸 수가 자동으로 바뀌게 한다 */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* 카드에 등급 색을 은은하게 입힌다 */
+.card {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line) 40%, transparent);
+  border-radius: 14px;
+  background: var(--fill);
+}
+
+/* 1등급은 파랑을 쓴다 */
+.grade-1 {
+  --line: var(--blue);
+  --fill: var(--blue-soft);
+}
+
+/* 2등급은 초록을 쓴다 */
+.grade-2 {
+  --line: var(--green);
+  --fill: var(--green-soft);
+}
+
+/* 3등급은 주황을 쓴다 */
+.grade-3 {
+  --line: var(--orange);
+  --fill: var(--orange-soft);
+}
+
+/* 4등급은 빨강을 쓴다 */
+.grade-4 {
+  --line: var(--red);
+  --fill: var(--red-soft);
+}
+
+/* 등급이 없으면 회색을 쓴다 */
+.grade-none {
+  --line: var(--gray);
+  --fill: var(--gray-soft);
+}
+
+/* 측정소 이름과 등급 표시를 양 끝에 둔다 */
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* 측정소 이름 글자를 정한다 */
+.card-name {
+  margin: 0;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+/* 등급 이름표를 만든다 */
+.card-badge {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--line);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* 측정값 목록의 기본 여백을 없앤다 */
+.card-values {
+  margin: 0;
+}
+
+/* 항목 이름과 값을 한 줄에 양 끝으로 둔다 */
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* 항목 이름 글자색을 정한다 */
+.card-row dt {
+  color: var(--muted);
+}
+
+/* 측정값을 굵게 보여준다 */
+.card-row dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* 측정 시각 글자를 정한다 */
+.card-time {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* 휴대폰 화면에서는 제목과 드롭다운을 위아래로 쌓는다 */
+@media (max-width: 480px) {
+  /* 앱 제목이 한 줄을 차지하게 한다 */
+  .title {
+    flex-basis: 100%;
+  }
+
+  /* 드롭다운이 남은 폭을 모두 쓰게 한다 */
+  .picker {
+    flex: 1;
+  }
+
+  /* 카드를 한 줄에 하나씩 보여준다 */
+  .card-list {
+    grid-template-columns: 1fr;
+  }
+}
