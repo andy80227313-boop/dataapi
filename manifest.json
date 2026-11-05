@@ -1,0 +1,24 @@
+{
+  "id": "./",
+  "name": "공기 신호등",
+  "short_name": "공기",
+  "description": "지역별 미세먼지를 신호등 색으로 보여주는 앱",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#1d63d8",
+  "background_color": "#f3f5f8",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
